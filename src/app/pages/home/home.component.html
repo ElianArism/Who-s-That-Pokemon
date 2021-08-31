@@ -1,0 +1,161 @@
+<!-- title -->
+<div class="text-danger mb-5 div-title w-50 text-center mx-auto">
+  <h1>How's that Pokemon?</h1>
+  <hr />
+</div>
+<!-- end title -->
+
+<!-- main container -->
+<div class="row form-container">
+  <div class="col-md-12">
+    <div class="container-fluid h-100 bg-dark rounded-3 p-2">
+      <!-- form -->
+      <form
+        [formGroup]="trainerForm"
+        (ngSubmit)="validateTrainer()"
+        class="card"
+        *ngIf="!buttonContinue"
+      >
+        <h1 class="h2 text-black text-center">Create your trainer</h1>
+        <!-- trainer images -->
+        <div class="trainer-images mx-auto">
+          <img
+            src="../../../assets/1.png"
+            class="no-selected"
+            id="img-avatar-1"
+            (click)="selectAvatar(1)"
+            #avatar
+          />
+          <img
+            src="../../../assets/2.png"
+            class="no-selected"
+            id="img-avatar-2"
+            (click)="selectAvatar(2)"
+            #avatar
+          />
+          <img
+            src="../../../assets/3.jpg"
+            class="no-selected"
+            id="img-avatar-3"
+            (click)="selectAvatar(3)"
+            #avatar
+          />
+          <img
+            src="../../../assets/4.png"
+            class="no-selected"
+            id="img-avatar-4"
+            (click)="selectAvatar(4)"
+            #avatar
+          />
+          <img
+            src="../../../assets/5.jpeg"
+            class="no-selected"
+            id="img-avatar-5"
+            (click)="selectAvatar(5)"
+            #avatar
+          />
+          <img
+            src="../../../assets/6.png"
+            class="no-selected"
+            id="img-avatar-6"
+            (click)="selectAvatar(6)"
+            #avatar
+          />
+        </div>
+        <!-- end trainer images -->
+
+        <!-- input form -->
+        <div class="text-center w-100">
+          <label
+            for="input-name"
+            class="form-label text-center text-black-50 h5"
+          >
+            Choose your name
+          </label>
+          <div class="my-3"></div>
+          <div class="input-group w-50 m-auto mb-1">
+            <input
+              type="text"
+              name="input-name"
+              autocomplete="off"
+              formControlName="name"
+              class="form-control p-3 w-50"
+              placeholder="Your name"
+            />
+          </div>
+        </div>
+        <!-- end input -->
+
+        <!-- form buttons -->
+        <button
+          *ngIf="!buttonContinue"
+          class="bg-danger text-white btn rounded-3 mb-4 p-2 w-50 m-auto"
+          type="submit"
+          [disabled]="trainerForm.invalid"
+        >
+          <ng-container *ngIf="!loading">
+            {{
+              trainerAvatar && !trainerForm.invalid
+                ? "Ready!"
+                : "Avatar or trainer name invalid"
+            }}
+          </ng-container>
+          <ng-container *ngIf="loading">
+            <span
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span> Loading...</span>
+          </ng-container>
+        </button>
+        <!-- end form buttons -->
+      </form>
+      <!-- end form -->
+      
+      <!-- form to rendered if user alrady exists -->
+      <div
+        class="
+          p-3
+          w-75
+          text-center
+          m-auto
+          bg-dark
+          text-white
+          rounded
+          popup-info
+        "
+        *ngIf="buttonContinue"
+        style="min-height: 500px"
+      >
+        <p>
+          This name already exists in the score table.
+          <br />
+          <br />
+          If after the game you want to save your score you will need the
+          password linked to this player.
+        </p>
+        <p>Do you want to continue?</p>
+
+        <div class="buttons w-100 d-flex mx-auto justify-content-around m-auto">
+          <button
+            type="button"
+            class="btn btn-outline-danger mb-2 p-2"
+            (click)="createTrainer()"
+          >
+            Yes, it's me!
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-warning p-2"
+            (click)="trainerForm.reset(); buttonContinue = false"
+          >
+            I will choose other name
+          </button>
+        </div>
+      </div>
+      <!-- end form to rendered -->
+    </div>
+  </div>
+</div>
+<!-- main container -->

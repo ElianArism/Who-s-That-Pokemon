@@ -1,0 +1,113 @@
+<div class="card card-game bg-black rounded-3 text-white">
+  <!-- container main card -->
+  <div class="animation-game" *ngIf="pokemon">
+    <!-- random pokemon img  -->
+    <picture
+      class="bg-white w-50 my-2 mx-auto d-flex justify-content-center rounded"
+      style="min-height: 300px"
+    >
+      <img
+        class="card-img-top text-center mx-auto img-pokemon hidden-pokemon"
+        width="300"
+        [src]="pokemon.sprites.front_default"
+        #pokeImg
+      />
+    </picture>
+    <!-- End random pokemon img -->
+
+    <!-- Choices container -->
+    <div class="card-body mx-auto text-center animation-game" *ngIf="pokemon">
+      <p class="card-title">Who's that pokemon?</p>
+
+      <!-- choices -->
+      <ng-container *ngIf="!optClicked.clicked">
+        <p
+          *ngFor="let pokemon of pokemonsToPlay"
+          class="
+            choices-text
+            p-3
+            w-75
+            mx-auto
+            my-2
+            border border-1
+            rounded-2
+            bg-danger
+            border-danger
+          "
+          (click)="selectPokemon(pokemon.name)"
+          #pokeOption
+        >
+          {{ pokemon.name }}
+        </p>
+      </ng-container>
+      <!-- end choices -->
+
+      <!-- buttons -->
+      <ng-container *ngIf="optClicked.correct">
+        <div class="p-3 border border-1 rounded-2 bg-danger border-danger">
+          Yes, It's {{ pokemon.name }}
+        </div>
+        <div
+          class="
+            card-text
+            p-3
+            mx-auto
+            border
+            w-50
+            mt-5
+            border-1
+            rounded-2
+            bg-primary
+            border-primary
+          "
+          (click)="nextPokemon()"
+        >
+          Next!
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="optClicked.clicked && !optClicked.correct">
+        <div class="p-3 border border-1 rounded-2 bg-danger border-danger">
+          Incorrect answer, It was {{ pokemon.name }}
+        </div>
+        <p
+          class="
+            p-3
+            mx-auto
+            border
+            w-50
+            mt-5
+            border-1
+            rounded-2
+            bg-primary
+            border-primary
+          "
+        >
+          Score: {{ correctAnswers }}
+        </p>
+        <div
+          class="
+            card-text
+            p-3
+            mx-auto
+            border
+            w-25
+            mt-2
+            border-1
+            rounded-2
+            bg-danger
+            border-danger
+          "
+          (click)="saveScore()"
+        >
+          Save my Score!
+        </div>
+      </ng-container>
+      <!-- end buttons -->
+    </div>
+    <!-- end choices container -->
+  </div>
+
+  <!-- spinner -->
+  <app-spinner class="m-auto" *ngIf="!pokemon"></app-spinner>
+</div>

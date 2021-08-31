@@ -1,0 +1,16 @@
+
+<div class="modal-avatar my-3 p-2" *ngIf="trainer">
+    <!-- avatar img -->
+    <picture class="avatar-container p-2">
+        <img [src]="trainer.avatar" alt="">
+    </picture>
+    <!-- end avatar img -->
+    
+    <!-- avatar info -->
+    <div class="avatar-info text-black-50 text-center">
+        <p>{{trainer.name}}</p>
+        <br>
+        <p><b>Score: {{trainer.score}}</b></p>
+    </div>
+    <!-- end avatar info -->
+</div>

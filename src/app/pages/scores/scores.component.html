@@ -1,0 +1,29 @@
+<div class="container mx-auto">
+  <p class="text-center h2">Scores</p>
+  <hr />
+  <br />
+
+  <ng-container *ngIf="trainers">
+    <!-- trainer cards -->
+    <ng-container *ngFor="let t of trainers; let i = index">
+      <div
+        class="score-item d-flex justify-content-between mx-auto fade-animation"
+      >
+        <div
+          class="top-scores"
+          [class.animation-top]="i < 3"
+          [class.top-1]="i === 0"
+          [class.top-2]="i === 1"
+          [class.top-3]="i === 2"
+          [class.other-top]="i > 2"
+        >
+          <i class="fas fa-medal"></i>
+        </div>
+        <app-modal class="w-75" [trainer]="t"></app-modal>
+      </div>
+    </ng-container>
+    <!-- end trainer cards -->
+  </ng-container>
+  <!-- spinner -->
+  <app-spinner *ngIf="!trainers"></app-spinner>
+</div>

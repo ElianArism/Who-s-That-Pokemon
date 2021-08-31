@@ -1,0 +1,57 @@
+// main container
+.container-card {
+    margin: auto !important;
+    width: 90% !important;
+}
+
+// form password
+.form-password {
+    min-height: 500px !important;
+}
+
+// input form
+input  {
+    outline: none !important;
+    border: none !important;
+    border-bottom: 1px solid gray !important;
+
+    &:focus {
+        outline: none !important;
+    }
+}
+
+@media screen and (max-width: 786px) {
+    // main container
+    .container {
+        padding: 0 !important;
+    }
+
+    // form
+    .form-password {
+        width: 95% !important;
+        height: auto !important;
+        min-height: 350px !important;
+        margin: 10px auto;
+        padding: 10px;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        
+        // input
+        .input-form {
+            width: 90% !important;
+            margin: 3rem auto !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            
+            input {
+                padding: 0 !important;
+                width: 70% !important;
+            }
+        }
+        .buttons-form-password {
+            width: 100% !important;
+        }        
+    }
+}
+

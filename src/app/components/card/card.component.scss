@@ -1,0 +1,77 @@
+@import '/src/assets/global.scss';
+
+// Main card
+.card-game {
+  min-height: 670px;
+}
+
+// class for handle animation
+.animation-game {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+// img random pokemon
+.img-pokemon {
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  max-width: 300px;
+}
+
+.hidden-pokemon {
+  filter: brightness(0%);
+  transition: filter 500ms;
+}
+
+.show-pokemon {
+  filter: none;
+  transition: filter 500ms;
+}
+
+// buttons styles
+.bg-danger {
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: $red-hover-color !important;
+    transition: background-color 200ms;
+  }
+}
+
+.choices-text {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 786px) {
+  // main card
+  .card-game {
+    min-height: 538px;
+    height: auto !important;
+
+    // img styles
+    picture {
+      width: 100% !important;
+      display: flex;
+
+      img {
+        margin: 0 auto;
+      }
+    }
+
+    .img-pokemon {
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+    }
+  }
+  // buttons and text
+  p,
+  .card-text,
+  .bg-danger {
+    width: 90% !important;
+    padding: 10px !important;
+    margin: 10px auto !important;
+  }
+}

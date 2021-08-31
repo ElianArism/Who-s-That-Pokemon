@@ -1,0 +1,75 @@
+<div
+  class="container d-flex flex-column justify-content-between m-auto"
+  *ngIf="trainer"
+>
+  <!-- container main -->
+  <div class="container-fluid container-card mx-auto">
+    <!-- card -->
+    <app-card class="m-auto" *ngIf="!toggleForm"></app-card>
+
+    <!-- form password -->
+    <form
+      [formGroup]="formPassword"
+      (ngSubmit)="existsTrainer()"
+      class="
+        justify-content-around
+        align-items-center
+        col-minheight
+        form-password
+        flex-column
+        text-center 
+        text-white
+        bg-dark
+        d-flex
+        m-auto
+        card
+        w-50
+      "
+      *ngIf="toggleForm"
+    >
+      <h2 class="text-danger" *ngIf="trainer.score >= 151"><img width="15" src="../../../assets/favicon.ico"/> Congrats, You win! <img width="15" src="../../../assets/favicon.ico"/> </h2>
+      <label>Type your password (Only you can set your score): </label>
+      <div class="w-75 input-form d-flex">
+        <input
+          #password
+          type="password"
+          placeholder="Type your password"
+          formControlName="password"
+          class="w-100 bg-dark text-white p-2"
+          autocomplete="off"
+        />
+        <a (click)="seePassword(password)" class="btn btn-dark">See</a>
+      </div>
+
+      <div
+        class="w-50 d-flex mx-auto buttons-form-password justify-content-around"
+      >
+        <button
+          type="submit"
+          class="btn btn-outline-danger p-2"
+          [disabled]="formPassword.invalid"
+        >
+          <span *ngIf="!loading">Send!</span>
+          <ng-container *ngIf="loading">
+            <span
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span> Loading...</span>
+          </ng-container>
+        </button>
+        <button routerLink="/scores" class="btn btn-outline-warning p-2">
+          <span>Cancel</span>
+        </button>
+      </div>
+    </form>
+    <!-- end form -->
+  </div>
+  <!-- end container -->
+
+  <!-- modal -->
+  <app-modal class="mt-4 p-3" [trainer]="trainer"></app-modal>
+  <!-- spinner -->
+  <app-spinner class="mx-center" *ngIf="!trainer"></app-spinner>
+</div>
