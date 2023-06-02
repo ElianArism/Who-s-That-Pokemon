@@ -11,7 +11,7 @@
   * Netlify
   * Pokeapi
      
-## Used Technologies 
+## Tech Stack 
   * Angular 12
   * Bootstrap
   * Sass
